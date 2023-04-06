@@ -82,3 +82,72 @@ function add(a: number, b: number) {
 function printResult(value: any) {
 	console.log(value); // Here we will get void type
 }
+
+// Genrics
+
+// Genrics letting us to convert a function to a Generic Function
+// We converting it by adding a '<generic type>' before function parameters. Offen writed like this -  <T> and adding it to the parameters as well. Without this, TS will thinks about our array as any type and then it will not errrors us when we will try use eg. .split('') method on our value with includes numbers in a front of array - this is not aloved in JS.
+
+function insertAtBegninning<T>(array: T[], value: T) {
+	// Also when we write <T> and T as a value types, TS now knows that all values will be the same type as a single Value used in function. Without this TS will think that result of function will be any type, where our result will have number as a first value in array, with makes a using .split method forbiden.
+	const newArray = [value, ...array];
+	return newArray;
+}
+
+const demoArray = [1, 2, 3];
+
+const updatedAray = insertAtBegninning(demoArray, -1); // [-1, 1, 2, 3] // without <T> id don't know that this is a array full of number
+
+const stringArray = insertAtBegninning(['a', 'b', 'c'], 'd'); // know that is a array full of strings
+// Without <T> we would not get error and we will get error after code compilation to the vanila js.
+// updatedAray[0].split(''); // not allowed
+
+/*
+
+More complex explanation 
+
+Generic Types ("Generics") can be tricky to wrap your head around.
+
+But indeed, we are working with them all the time - one of the most prominent examples is an array.
+
+Consider this example array:
+
+    let numbers = [1, 2, 3];
+
+Here, the type is inferred, but if we would assign it explicitly, we could do it like this:
+
+    let numbers: number[] = [1, 2, 3];
+
+number[] is the TypeScript notation for saying "this is an array of numbers".
+
+But actually, number[] is just syntactic sugar!
+
+The actual type is Array. ALL arrays are of the Array type.
+
+BUT: Since an array type really only makes sense if we also describe the type of items in the array, Array actually is a generic type.
+
+You could also write the above example liks this:
+
+    let numbers: Array<number> = [1, 2, 3];
+
+Here we have the angle brackets (<>) again! But this time NOT to create our own type (as we did it in the previous lecture) but instead to tell TypeScript which actual type should be used for the "generic type placeholder" (T in the previous lecture).
+
+Just as shown in the last lecture, TypeScript would be able to infer this as well - we rely on that when we just write:
+
+    let numbers = [1, 2, 3];
+
+But if we want to explicitly set a type, we could do it like this:
+
+    let numbers: Array<number> = [1, 2, 3];
+
+Of course it can be a bit annoying to write this rather long and clunky type, that's why we have this alternative (syntactic sugar) for arrays:
+
+    let numbers: number[] = [1, 2, 3];
+
+If we take the example from the previous lecture, we could've also set the concrete type for our placeholder T explicitly:
+
+    const stringArray = insertAtBeginning<string>(['a', 'b', 'c'], 'd');
+
+So we can not just use the angle brackets to define a generic type but also to USE a generic type and explicitly set the placeholder type that should be used - sometimes this is required if TypeScript is not able to infer the (correct) type. We'll see this later in this course section!
+
+*/
