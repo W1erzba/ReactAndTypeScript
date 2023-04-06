@@ -45,8 +45,15 @@ let people: {
 
 // Type inference - by defult TS will implement a type to your value if u don'y assign it, but if u write your value for first type, TS will look for it value and will assign it automatically for you, eg. below
 
-let course = 'React - The Complete Guide';
+// let course = 'React - The Complete Guide';
 // instead of 'let curse = 'React - The Complete Guide': string
 
 // here we can't change a course to number because Type inference set this as a string.
 // course = 12341;
+
+// Union Types - this is a type definition that allows a more than one type of values
+
+let curse: string | number = 'React - The Complete Guide';
+//Now  we can assign a number to our variable. This is a manualy value assignment when we don't wanna use Type Inference.
+// So to do this we have to write this like above 'VARIABLE: typeA | typeB'
+curse = 12341;
