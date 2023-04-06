@@ -57,3 +57,14 @@ let curse: string | number = 'React - The Complete Guide';
 //Now  we can assign a number to our variable. This is a manualy value assignment when we don't wanna use Type Inference.
 // So to do this we have to write this like above 'VARIABLE: typeA | typeB'
 curse = 12341;
+
+// Type Aliases - is used to set a type definition to avoid duplications in your code. We can define a base type instead of  name: string, age: number
+
+// We write this like this:
+// 'type Person = {
+// name: string
+// age: 32
+//}
+
+// Now we can write like this
+// let people: Person[] // with tells that our object will have a types like in our Person definiton
