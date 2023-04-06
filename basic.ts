@@ -38,10 +38,10 @@ person = {
 // }
 
 // Here we assign that this object have those types of values but here we will not store a single object but array of objects because we set a square brackets at the end of our configurtation
-let people: {
-	name: string;
-	age: Number;
-}[];
+// let people: {
+// 	name: string;
+// 	age: Number;
+// }[];
 
 // Type inference - by defult TS will implement a type to your value if u don'y assign it, but if u write your value for first type, TS will look for it value and will assign it automatically for you, eg. below
 
@@ -61,10 +61,24 @@ curse = 12341;
 // Type Aliases - is used to set a type definition to avoid duplications in your code. We can define a base type instead of  name: string, age: number
 
 // We write this like this:
-// 'type Person = {
-// name: string
-// age: 32
-//}
+type Person = {
+	name: string;
+	age: 32;
+};
 
 // Now we can write like this
-// let people: Person[] // with tells that our object will have a types like in our Person definiton
+let people: Person[];
+// with tells that our object will have a types like in our Person definiton
+
+// Funcrtions & types
+
+// We can add a variable type of function return by adding : type after function  parameters  (a..., b...): number
+function add(a: number, b: number) {
+	// '...): number'
+	return a + b;
+}
+
+// Void - special return type when we don't use 'return' statment
+function printResult(value: any) {
+	console.log(value); // Here we will get void type
+}
