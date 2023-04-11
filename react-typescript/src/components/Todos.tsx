@@ -1,12 +1,11 @@
-// React.FC - FC  Functional Component
+import Todo from '../models/todo';
 
-const Todos: React.FC<{ items: string[] }> = (props) => {
-	// If you want to use a props in your TS components you have to add this React.FC and then there describe what kind of props this commponents needs. eg. like above where we need array of strings
-
+// We can use classes as a Type Aliases to define  our data types
+const Todos: React.FC<{ items: Todo[] }> = (props) => {
 	return (
 		<ul>
 			{props.items.map((item) => (
-				<li key={item}>{item}</li>
+				<li key={item.id}>{item.text}</li>
 			))}
 		</ul>
 	);
